@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:machine_task/models/api_model.dart';
 
+const primaryBlue = Color(0xFF2196F3);
+const secondaryBlue = Color(0xFF64B5F6);
+const lightBlue = Color(0xFFE3F2FD);
+const backgroundColor = Colors.white;
+
+// UserCard Component
 class UserCard extends StatefulWidget {
   final User user;
   final VoidCallback? onTap;
@@ -56,11 +62,15 @@ class _UserCardState extends State<UserCard> with SingleTickerProviderStateMixin
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: backgroundColor,
               borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: _isHovered ? primaryBlue.withOpacity(0.3) : Colors.grey.withOpacity(0.1),
+                width: 1,
+              ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(_isHovered ? 0.1 : 0.05),
+                  color: primaryBlue.withOpacity(_isHovered ? 0.1 : 0.05),
                   blurRadius: _isHovered ? 15 : 10,
                   offset: const Offset(0, 5),
                   spreadRadius: _isHovered ? 2 : 0,
@@ -79,19 +89,26 @@ class _UserCardState extends State<UserCard> with SingleTickerProviderStateMixin
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: Theme.of(context).primaryColor.withOpacity(0.2),
+                          color: primaryBlue.withOpacity(0.2),
                           width: 2,
                         ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: primaryBlue.withOpacity(0.1),
+                            blurRadius: 8,
+                            spreadRadius: 2,
+                          ),
+                        ],
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(30),
                         child: Image.network(
                           widget.user.profileImage,
                           fit: BoxFit.cover,
-                          errorBuilder: (context, error, stackTrace) => const Icon(
+                          errorBuilder: (context, error, stackTrace) => Icon(
                             Icons.person,
                             size: 30,
-                            color: Colors.grey,
+                            color: primaryBlue.withOpacity(0.5),
                           ),
                         ),
                       ),
@@ -108,6 +125,7 @@ class _UserCardState extends State<UserCard> with SingleTickerProviderStateMixin
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                             letterSpacing: 0.3,
+                            color: primaryBlue,
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -122,10 +140,17 @@ class _UserCardState extends State<UserCard> with SingleTickerProviderStateMixin
                       ],
                     ),
                   ),
-                  Icon(
-                    Icons.chevron_right,
-                    color: Colors.grey[400],
-                    size: 24,
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: _isHovered ? primaryBlue : lightBlue,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      color: _isHovered ? Colors.white : primaryBlue,
+                      size: 16,
+                    ),
                   ),
                 ],
               ),

@@ -1,8 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:machine_task/auth/login.dart';
 import 'package:machine_task/views/screens/api_page.dart';
 import 'package:machine_task/views/screens/user_list.dart';
+
+// Define theme colors
+const primaryBlue = Color(0xFF2196F3);
+const secondaryBlue = Color(0xFF64B5F6);
+const backgroundColor = Colors.white;
 
 class HomeScreen extends StatefulWidget {
   final Map<String, dynamic> user;
@@ -51,53 +58,54 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        title: Row(
-          children: [
-            CircleAvatar(
-              backgroundColor: Colors.blue[100],
-              child: Text(
-                widget.user['name'][0].toUpperCase(),
+      backgroundColor: backgroundColor,
+  appBar: AppBar(
+  elevation: 0,
+  backgroundColor: backgroundColor,
+  title: Row(
+    children: [
+      CircleAvatar(
+        backgroundColor: secondaryBlue,
+        radius: 24,  
+        backgroundImage: widget.user['profileImage'] != null 
+            ? Image.file(File(widget.user['profileImage'])).image 
+            : null,  
+        child: widget.user['profileImage'] == null
+            ? Text(
+                widget.user['name'][0].toUpperCase(),  
                 style: const TextStyle(
-                  color: Colors.blue,
+                  color: backgroundColor,
                   fontWeight: FontWeight.bold,
                 ),
-              ),
+              )
+            : null, // Display the first letter if no profile image is available
+      ),
+      const SizedBox(width: 12),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Welcome back,',
+            style: TextStyle(
+              fontSize: 14,
+              color: Colors.grey[600],
+              fontWeight: FontWeight.normal,
             ),
-            const SizedBox(width: 12),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Welcome back,',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[600],
-                    fontWeight: FontWeight.normal,
-                  ),
-                ),
-                Text(
-                  widget.user['name'],
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
+          ),
+          Text(
+            widget.user['name'],
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: primaryBlue,
             ),
-          ],
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications_outlined),
-            onPressed: () {},
-            color: Colors.grey[700],
           ),
         ],
       ),
+    ],
+  ),
+),
+
       body: FadeTransition(
         opacity: _fadeAnimation,
         child: IndexedStack(
@@ -107,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: backgroundColor,
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.1),
@@ -119,6 +127,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         ),
         child: NavigationBar(
           selectedIndex: _currentIndex,
+          backgroundColor: backgroundColor,
+          indicatorColor: secondaryBlue,
           onDestinationSelected: (index) {
             if (index == 2) {
               _logout(context);
@@ -130,18 +140,19 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           },
           destinations: const [
             NavigationDestination(
-              icon: Icon(Icons.people_outline),
-              selectedIcon: Icon(Icons.people),
+              icon: Icon(Icons.people_outline, color: primaryBlue),
+              selectedIcon: Icon(Icons.people, color: backgroundColor),
               label: 'Users',
             ),
             NavigationDestination(
-              icon: Icon(Icons.api_outlined),
-              selectedIcon: Icon(Icons.api),
+              icon: Icon(Icons.api_outlined, color: primaryBlue),
+              selectedIcon: Icon(Icons.api, color: backgroundColor),
               label: 'API',
             ),
             NavigationDestination(
-              icon: Icon(Icons.logout_outlined),
+              icon: Icon(Icons.logout_outlined, color: primaryBlue),
               label: 'Logout',
+              
             ),
           ],
         ),
@@ -155,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
         decoration: const BoxDecoration(
-          color: Colors.white,
+          color: backgroundColor,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: Column(
@@ -174,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             const Icon(
               Icons.logout_rounded,
               size: 40,
-              color: Colors.blue,
+              color: primaryBlue,
             ),
             const SizedBox(height: 16),
             const Text(
@@ -182,6 +193,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
+                color: primaryBlue,
               ),
             ),
             const SizedBox(height: 8),
@@ -205,21 +217,23 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
+                        side: const BorderSide(color: primaryBlue),
                       ),
-                      child: const Text('Cancel'),
+                      child: const Text('Cancel', style: TextStyle(color: primaryBlue)),
                     ),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () => Get.offAll(() =>   LoginScreen()),
+                      onPressed: () => Get.offAll(() => LoginScreen()),
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 12),
+                        backgroundColor: primaryBlue,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      child: const Text('Logout'),
+                      child: const Text('Logout', style: TextStyle(color: backgroundColor)),
                     ),
                   ),
                 ],
