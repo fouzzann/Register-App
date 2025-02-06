@@ -3,7 +3,9 @@ import 'package:get/get.dart';
 import 'package:machine_task/auth/login.dart';
 import 'package:machine_task/utils/app_color_themes.dart';
 
-class LogoutDialog extends StatelessWidget {
+class LogoutModalWidget extends StatelessWidget {
+  const LogoutModalWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(

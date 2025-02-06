@@ -1,16 +1,17 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:machine_task/controllers/home_controller.dart';
 import 'package:machine_task/utils/app_color_themes.dart';
 
-class BottomNavBar extends StatelessWidget {
-  final int currentIndex;
-  final Function(int) onDestinationSelected;
+class NavigationBarWidget extends StatelessWidget {
+  final HomeController homeController;
+  final BuildContext context;
 
-  const BottomNavBar({
+  const NavigationBarWidget({
     Key? key,
-    required this.currentIndex,
-    required this.onDestinationSelected,
+    required this.homeController,
+    required this.context,
   }) : super(key: key);
 
   @override
@@ -28,10 +29,16 @@ class BottomNavBar extends StatelessWidget {
         ],
       ),
       child: NavigationBar(
-        selectedIndex: currentIndex,
+        selectedIndex: homeController.currentIndex.value,
         backgroundColor: ThemeConstants.backgroundColor,
         indicatorColor: ThemeConstants.secondaryBlue,
-        onDestinationSelected: onDestinationSelected,
+        onDestinationSelected: (index) {
+          if (index == 2) {
+            homeController.logout(context);
+          } else {
+            homeController.setCurrentIndex(index);
+          }
+        },
         destinations: const [
           NavigationDestination(
             icon: Icon(Icons.people_outline, color: ThemeConstants.primaryBlue),
