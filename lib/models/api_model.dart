@@ -16,7 +16,7 @@ class User {
       id: json['id'] ?? 0,
       name: json['name'] ?? 'No Name',
       email: json['email'] ?? 'No Email',
-      profileImage: json['profile_image'] ?? 'https://via.placeholder.com/150',
+      profileImage: json['profile_image'] ?? '',
     );
   }
 }
