@@ -39,4 +39,8 @@ class ThemeConstants {
   static const double borderRadius = 12.0;
   static const double smallBorderRadius = 8.0;
   static const double largeBorderRadius = 16.0;
+
+
+  static const borderBlue = Color(0xFFBDDCFF);
+  static const darkBlue = Color(0xFF1557B0);
 }

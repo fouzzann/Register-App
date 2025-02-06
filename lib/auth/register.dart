@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:machine_task/auth/login.dart';
 import 'package:machine_task/controllers/register_controller.dart';
 import 'package:machine_task/utils/app_color_themes.dart';
 
@@ -30,7 +29,7 @@ class RegisterScreen extends StatelessWidget {
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: BorderSide(color: LoginScreen.borderBlue),
+        borderSide: BorderSide(color: ThemeConstants.borderBlue),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
@@ -56,7 +55,7 @@ class RegisterScreen extends StatelessWidget {
                     style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
-                        color: LoginScreen.darkBlue),
+                        color: ThemeConstants.darkBlue),
                     textAlign: TextAlign.center),
                 const SizedBox(height: 8),
                 Text('Please fill in the form to continue',
@@ -85,7 +84,7 @@ class RegisterScreen extends StatelessWidget {
                           icon: Icon(Icons.add_a_photo_rounded,
                               size: 20, color: ThemeConstants.primaryBlue), 
                           onPressed: controller.pickImage,
-                          color: LoginScreen.primaryBlue,
+                          color: ThemeConstants.primaryBlue,
                         ),
                       ),
                     ],
@@ -160,11 +159,11 @@ class RegisterScreen extends StatelessWidget {
                                   color: Colors.white)),
                     )),
                 const SizedBox(height: 16),
-                TextButton(
+                TextButton( 
                   onPressed: () => Get.back(),
                   child: Text('Sign In',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, color: ThemeConstants.primaryBlue)),
+                          fontWeight: FontWeight.bold, color: ThemeConstants.darkBlue)),
                 ),
               ],
             ),

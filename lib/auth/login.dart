@@ -1,16 +1,15 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:machine_task/auth/register.dart';
 import 'package:machine_task/controllers/login_controller.dart';
+import 'package:machine_task/utils/app_color_themes.dart';
 
 class LoginScreen extends StatelessWidget {
   final LoginController controller = Get.put(LoginController());
 
-  // Custom colors for blue theme
-  static const primaryBlue = Color(0xFF1A73E8);
-  static const lightBlue = Color(0xFFE8F0FE);
-  static const borderBlue = Color(0xFFBDDCFF);
-  static const darkBlue = Color(0xFF1557B0);
+
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +28,13 @@ class LoginScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: const BoxDecoration(
-                      color: lightBlue,
+                      color: ThemeConstants.lightBlue,
                       shape: BoxShape.circle,
                     ),
                     child: const Icon(
                       Icons.lock_outlined,
                       size: 48,
-                      color: primaryBlue,
+                      color: ThemeConstants.primaryBlue,
                     ),
                   ),
                   const SizedBox(height: 32),
@@ -44,7 +43,7 @@ class LoginScreen extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
-                      color: darkBlue,
+                      color: ThemeConstants.darkBlue,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -63,9 +62,9 @@ class LoginScreen extends StatelessWidget {
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: 'Email',
-                      prefixIcon: const Icon(Icons.email_outlined, color: primaryBlue),
+                      prefixIcon: const Icon(Icons.email_outlined, color: ThemeConstants.primaryBlue),
                       filled: true,
-                      fillColor: lightBlue.withOpacity(0.3),
+                      fillColor: ThemeConstants.lightBlue.withOpacity(0.3),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -79,20 +78,20 @@ class LoginScreen extends StatelessWidget {
                         obscureText: !controller.isPasswordVisible.value,
                         decoration: InputDecoration(
                           labelText: 'Password',
-                          prefixIcon: const Icon(Icons.lock_outline, color: primaryBlue),
+                          prefixIcon: const Icon(Icons.lock_outline, color: ThemeConstants.primaryBlue),
                           suffixIcon: IconButton(
                             icon: Icon(
                               controller.isPasswordVisible.value
                                   ? Icons.visibility_off
                                   : Icons.visibility,
-                              color: primaryBlue,
+                              color: ThemeConstants.primaryBlue,
                             ),
                             onPressed: () {
                               controller.isPasswordVisible.toggle();
                             },
                           ),
                           filled: true,
-                          fillColor: lightBlue.withOpacity(0.3),
+                          fillColor: ThemeConstants.lightBlue.withOpacity(0.3),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
@@ -108,7 +107,7 @@ class LoginScreen extends StatelessWidget {
                     child: TextButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(
-                        foregroundColor: primaryBlue,
+                        foregroundColor: ThemeConstants.primaryBlue,
                       ),
                       child: const Text('Forgot Password?'),
                     ),
@@ -117,7 +116,7 @@ class LoginScreen extends StatelessWidget {
                   Obx(() => ElevatedButton(
                         onPressed: controller.isLoading.value ? null : controller.login,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: primaryBlue,
+                          backgroundColor: ThemeConstants.primaryBlue,
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 16),
                           shape: RoundedRectangleBorder(
@@ -149,7 +148,7 @@ class LoginScreen extends StatelessWidget {
                       TextButton(
                         onPressed: () => Get.to(() =>   RegisterScreen()),
                         style: TextButton.styleFrom(
-                          foregroundColor: primaryBlue,
+                          foregroundColor: ThemeConstants.primaryBlue,
                         ),
                         child: const Text(
                           "Register",
