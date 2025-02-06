@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:machine_task/models/api_model.dart';
+import 'package:machine_task/utils/app_color_themes.dart';
 
-const primaryBlue = Color(0xFF2196F3);
-const secondaryBlue = Color(0xFF64B5F6);
-const lightBlue = Color(0xFFE3F2FD);
-const backgroundColor = Colors.white;
 
 // UserCard Component
 class UserCard extends StatefulWidget {
@@ -62,15 +59,15 @@ class _UserCardState extends State<UserCard> with SingleTickerProviderStateMixin
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
-              color: backgroundColor,
+              color: ThemeConstants.backgroundColor,
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
-                color: _isHovered ? primaryBlue.withOpacity(0.3) : Colors.grey.withOpacity(0.1),
+                color: _isHovered ? ThemeConstants.primaryBlue.withOpacity(0.3) : Colors.grey.withOpacity(0.1),
                 width: 1,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: primaryBlue.withOpacity(_isHovered ? 0.1 : 0.05),
+                  color: ThemeConstants.primaryBlue.withOpacity(_isHovered ? 0.1 : 0.05),
                   blurRadius: _isHovered ? 15 : 10,
                   offset: const Offset(0, 5),
                   spreadRadius: _isHovered ? 2 : 0,
@@ -89,12 +86,12 @@ class _UserCardState extends State<UserCard> with SingleTickerProviderStateMixin
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: primaryBlue.withOpacity(0.2),
+                          color: ThemeConstants.primaryBlue.withOpacity(0.2),
                           width: 2,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: primaryBlue.withOpacity(0.1),
+                            color: ThemeConstants.primaryBlue.withOpacity(0.1),
                             blurRadius: 8,
                             spreadRadius: 2,
                           ),
@@ -108,7 +105,7 @@ class _UserCardState extends State<UserCard> with SingleTickerProviderStateMixin
                           errorBuilder: (context, error, stackTrace) => Icon(
                             Icons.person,
                             size: 30,
-                            color: primaryBlue.withOpacity(0.5),
+                            color: ThemeConstants.primaryBlue.withOpacity(0.5),
                           ),
                         ),
                       ),
@@ -125,7 +122,7 @@ class _UserCardState extends State<UserCard> with SingleTickerProviderStateMixin
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                             letterSpacing: 0.3,
-                            color: primaryBlue,
+                            color: ThemeConstants.primaryBlue,
                           ),
                         ),
                         const SizedBox(height: 4),
@@ -143,12 +140,12 @@ class _UserCardState extends State<UserCard> with SingleTickerProviderStateMixin
                   Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: _isHovered ? primaryBlue : lightBlue,
+                      color: _isHovered ? ThemeConstants.primaryBlue : ThemeConstants.lightBlue,
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
                       Icons.arrow_forward_ios_rounded,
-                      color: _isHovered ? Colors.white : primaryBlue,
+                      color: _isHovered ? Colors.white : ThemeConstants.primaryBlue,
                       size: 16,
                     ),
                   ),

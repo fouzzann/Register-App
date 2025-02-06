@@ -1,15 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:machine_task/auth/login.dart';
+import 'package:machine_task/utils/app_color_themes.dart';
 import 'package:machine_task/views/screens/api_page.dart';
 import 'package:machine_task/views/screens/user_list.dart';
-
-// Define theme colors
-const primaryBlue = Color(0xFF2196F3);
-const secondaryBlue = Color(0xFF64B5F6);
-const backgroundColor = Colors.white;
 
 class HomeScreen extends StatefulWidget {
   final Map<String, dynamic> user;
@@ -58,14 +53,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: ThemeConstants.backgroundColor,
   appBar: AppBar(
   elevation: 0,
-  backgroundColor: backgroundColor,
+  backgroundColor: ThemeConstants.backgroundColor,
   title: Row(
     children: [
       CircleAvatar(
-        backgroundColor: secondaryBlue,
+        backgroundColor: ThemeConstants.secondaryBlue,
         radius: 24,  
         backgroundImage: widget.user['profileImage'] != null 
             ? Image.file(File(widget.user['profileImage'])).image 
@@ -74,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             ? Text(
                 widget.user['name'][0].toUpperCase(),  
                 style: const TextStyle(
-                  color: backgroundColor,
+                  color: ThemeConstants.backgroundColor,
                   fontWeight: FontWeight.bold,
                 ),
               )
@@ -97,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: primaryBlue,
+              color: LoginScreen.primaryBlue,
             ),
           ),
         ],
@@ -115,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: backgroundColor,
+          color: ThemeConstants.backgroundColor,
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.1),
@@ -127,8 +122,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         ),
         child: NavigationBar(
           selectedIndex: _currentIndex,
-          backgroundColor: backgroundColor,
-          indicatorColor: secondaryBlue,
+          backgroundColor: ThemeConstants.backgroundColor,
+          indicatorColor: ThemeConstants.secondaryBlue,
           onDestinationSelected: (index) {
             if (index == 2) {
               _logout(context);
@@ -140,17 +135,17 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
           },
           destinations: const [
             NavigationDestination(
-              icon: Icon(Icons.people_outline, color: primaryBlue),
-              selectedIcon: Icon(Icons.people, color: backgroundColor),
+              icon: Icon(Icons.people_outline, color: LoginScreen.primaryBlue),
+              selectedIcon: Icon(Icons.people, color: ThemeConstants.backgroundColor),
               label: 'Users',
             ),
             NavigationDestination(
-              icon: Icon(Icons.api_outlined, color: primaryBlue),
-              selectedIcon: Icon(Icons.api, color: backgroundColor),
+              icon: Icon(Icons.api_outlined, color: LoginScreen.primaryBlue),
+              selectedIcon: Icon(Icons.api, color: ThemeConstants.backgroundColor),
               label: 'API',
             ),
             NavigationDestination(
-              icon: Icon(Icons.logout_outlined, color: primaryBlue),
+              icon: Icon(Icons.logout_outlined, color: LoginScreen.primaryBlue),
               label: 'Logout',
               
             ),
@@ -166,7 +161,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       backgroundColor: Colors.transparent,
       builder: (context) => Container(
         decoration: const BoxDecoration(
-          color: backgroundColor,
+          color: ThemeConstants.backgroundColor,
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
         child: Column(
@@ -185,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
             const Icon(
               Icons.logout_rounded,
               size: 40,
-              color: primaryBlue,
+              color: ThemeConstants.primaryBlue,
             ),
             const SizedBox(height: 16),
             const Text(
@@ -193,7 +188,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: primaryBlue,
+                color: ThemeConstants.primaryBlue,
               ),
             ),
             const SizedBox(height: 8),
@@ -217,9 +212,9 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        side: const BorderSide(color: primaryBlue),
+                        side: const BorderSide(color: ThemeConstants.primaryBlue),
                       ),
-                      child: const Text('Cancel', style: TextStyle(color: primaryBlue)),
+                      child: const Text('Cancel', style: TextStyle(color: ThemeConstants.primaryBlue)),
                     ),
                   ),
                   const SizedBox(width: 16),
@@ -228,12 +223,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                       onPressed: () => Get.offAll(() => LoginScreen()),
                       style: ElevatedButton.styleFrom(
                         padding: const EdgeInsets.symmetric(vertical: 12),
-                        backgroundColor: primaryBlue,
+                        backgroundColor: ThemeConstants.primaryBlue,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      child: const Text('Logout', style: TextStyle(color: backgroundColor)),
+                      child: const Text('Logout', style: TextStyle(color: ThemeConstants.backgroundColor)),
                     ),
                   ),
                 ],
