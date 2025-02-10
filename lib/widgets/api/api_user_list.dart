@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:machine_task/models/api_model.dart';
 import 'package:machine_task/utils/app_color_themes.dart';
-import 'package:machine_task/widgets/api/api_user_card.dart';
+import 'package:machine_task/widgets/api/user_card/api_user_card.dart';
 
 class ApiUserList extends StatelessWidget {
   final List<User> users;
